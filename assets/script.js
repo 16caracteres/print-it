@@ -17,6 +17,8 @@ const slides = [
 	}
 ]
 
+// Etape 2 : ajouter les addEventListener
+
 let arrowLeft = document.querySelector(".arrow_left")
 let arrowRight = document.querySelector(".arrow_right")
 
@@ -27,3 +29,18 @@ arrowLeft.addEventListener("click", () => {
 arrowRight.addEventListener("click", () => {
 	console.log("Je clique sur la flèche droite")
 })
+
+// Etape 3 : insérer les bullets points
+
+let dots = document.querySelector(".dots")
+
+for(i = 0 ; i < slides.length; i++) {
+	console.log(slides[i])
+	let dot = document.createElement("span")
+	dot.classList.add("dot")
+	dots.appendChild(dot)
+
+	if (i === 0){
+	dot.classList.add("dot_selected")
+	}
+}
