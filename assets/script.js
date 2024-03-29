@@ -17,30 +17,51 @@ const slides = [
 	}
 ]
 
-// Etape 2 : ajouter les addEventListener
 
-let arrowLeft = document.querySelector(".arrow_left")
-let arrowRight = document.querySelector(".arrow_right")
+const arrowLeft = document.querySelector(".arrow_left")
+const arrowRight = document.querySelector(".arrow_right")
 
-arrowLeft.addEventListener("click", () => {
-	console.log("Je clique sur la flèche gauche")
-})
-
-arrowRight.addEventListener("click", () => {
-	console.log("Je clique sur la flèche droite")
-})
-
-// Etape 3 : insérer les bullets points
-
-let dots = document.querySelector(".dots")
+const dots = document.querySelector(".dots")
 
 for(i = 0 ; i < slides.length; i++) {
 	console.log(slides[i])
 	let dot = document.createElement("span")
 	dot.classList.add("dot")
 	dots.appendChild(dot)
-
-	if (i === 0){
-	dot.classList.add("dot_selected")
+	if ( i === 0 ) {
+		dot.classList.add("dot_selected")
 	}
 }
+
+const slideElement = document.getElementById("banner")
+const imageBanner = document.querySelector(".banner-img")
+const tagLine = document.querySelector("#banner p")
+const dotArray = document.querySelectorAll(".dot")
+let index = 0
+
+arrowLeft.addEventListener("click", () => {
+	console.log("Je clique sur la flèche gauche")
+	if(index > 0) {
+		dotArray[index].classList.remove("dot_selected")
+		index--
+		imageBanner.setAttribute("src", "./assets/images/slideshow/" + slides[index]["image"])
+		tagLine.innerHTML = slides[index]["tagLine"]
+		dotArray[index].classList.add("dot_selected")
+	}
+
+})
+
+arrowRight.addEventListener("click", () => {
+	console.log("Je clique sur la flèche droite")
+	if(index < slides.length - 1) {
+		dotArray[index].classList.remove("dot_selected")
+		index++
+		imageBanner.setAttribute("src", "./assets/images/slideshow/" + slides[index]["image"])
+		tagLine.innerHTML = slides[index]["tagLine"]
+		dotArray[index].classList.add("dot_selected")
+	}
+})
+
+
+console.log(dotArray)
+console.log(slides.length)
