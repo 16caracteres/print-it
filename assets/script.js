@@ -24,7 +24,6 @@ const arrowRight = document.querySelector(".arrow_right")
 const dots = document.querySelector(".dots")
 
 for(i = 0 ; i < slides.length; i++) {
-	console.log(slides[i])
 	let dot = document.createElement("span")
 	dot.classList.add("dot")
 	dots.appendChild(dot)
@@ -33,17 +32,21 @@ for(i = 0 ; i < slides.length; i++) {
 	}
 }
 
-const slideElement = document.getElementById("banner")
 const imageBanner = document.querySelector(".banner-img")
 const tagLine = document.querySelector("#banner p")
 const dotArray = document.querySelectorAll(".dot")
 let index = 0
 
 arrowLeft.addEventListener("click", () => {
-	console.log("Je clique sur la flèche gauche")
 	if(index > 0) {
 		dotArray[index].classList.remove("dot_selected")
 		index--
+		imageBanner.setAttribute("src", "./assets/images/slideshow/" + slides[index]["image"])
+		tagLine.innerHTML = slides[index]["tagLine"]
+		dotArray[index].classList.add("dot_selected")
+	} else {
+		dotArray[index].classList.remove("dot_selected")
+		index = slides.length - 1
 		imageBanner.setAttribute("src", "./assets/images/slideshow/" + slides[index]["image"])
 		tagLine.innerHTML = slides[index]["tagLine"]
 		dotArray[index].classList.add("dot_selected")
@@ -52,16 +55,17 @@ arrowLeft.addEventListener("click", () => {
 })
 
 arrowRight.addEventListener("click", () => {
-	console.log("Je clique sur la flèche droite")
 	if(index < slides.length - 1) {
 		dotArray[index].classList.remove("dot_selected")
 		index++
 		imageBanner.setAttribute("src", "./assets/images/slideshow/" + slides[index]["image"])
 		tagLine.innerHTML = slides[index]["tagLine"]
 		dotArray[index].classList.add("dot_selected")
+	} else {
+		dotArray[index].classList.remove("dot_selected")
+		index = 0
+		imageBanner.setAttribute("src", "./assets/images/slideshow/" + slides[index]["image"])
+		tagLine.innerHTML = slides[index]["tagLine"]
+		dotArray[index].classList.add("dot_selected")
 	}
 })
-
-
-console.log(dotArray)
-console.log(slides.length)
